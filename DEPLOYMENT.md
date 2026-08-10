@@ -18,9 +18,9 @@
 
 | Mục | Nội dung |
 |-----|----------|
-| Public URL | https://TODO-thay-bang-url-that.up.railway.app |
-| Platform | Railway / Render / Cloud Run — (điền platform bạn dùng) |
-| Ngày deploy | (điền ngày) |
+| Public URL | https://day12-2a202601351-dangduchoa.onrender.com |
+| Platform | Render |
+| Ngày deploy | 10/08/2026 |
 
 ## Biến Môi Trường Đã Set Trên Cloud
 
@@ -30,7 +30,7 @@ Ghi tên biến và **nguồn giá trị**, không ghi giá trị:
 |------|--------|---------|
 | `PORT` | ✅ | platform tự gán |
 | `AGENT_API_KEY` | ✅ | đặt trong dashboard, không nằm trong repo |
-| `REDIS_URL` | ✅ | (điền: Redis add-on của platform / Upstash / ...) |
+| `REDIS_URL` | ✅ | Render Key Value (Redis) |
 | `RATE_LIMIT_PER_MINUTE` | ✅ | 10 |
 | `MONTHLY_BUDGET_USD` | ✅ | 10.0 |
 | `LOG_LEVEL` | ✅ | INFO |
@@ -73,7 +73,72 @@ done; echo
 Dán output của các lệnh trên vào đây:
 
 ```
-(điền output)
+# Lệnh 1
+HTTP/1.1 200 OK
+Date: Mon, 10 Aug 2026 05:51:10 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+cf-cache-status: DYNAMIC
+rndr-id: 590823c4-faeb-4a08
+Server: cloudflare
+vary: Accept-Encoding
+x-render-origin-server: uvicorn
+CF-RAY: a28cba28cdb5ce16-SIN
+alt-svc: h3=":443"; ma=86400
+
+{"status":"ok","service":"day12-agent","version":"1.0.0"}
+
+# Lệnh 2
+HTTP/1.1 200 OK
+Date: Mon, 10 Aug 2026 05:51:28 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+rndr-id: 34e8941c-63a9-4951
+Server: cloudflare
+vary: Accept-Encoding
+x-render-origin-server: uvicorn
+cf-cache-status: DYNAMIC
+CF-RAY: a28cba99aee02fbd-SIN
+alt-svc: h3=":443"; ma=86400
+
+{"status":"ready","redis":true}
+
+# Lệnh 3
+HTTP/1.1 401 Unauthorized
+Date: Mon, 10 Aug 2026 05:51:43 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+cf-cache-status: DYNAMIC
+rndr-id: e4178ba0-6ae3-4a3b
+Server: cloudflare
+vary: Accept-Encoding
+x-render-origin-server: uvicorn
+CF-RAY: a28cbaf67f207231-HKG
+alt-svc: h3=":443"; ma=86400
+
+{"detail":"invalid or missing API key"}
+
+# Lệnh 4
+HTTP/1.1 422 Unprocessable Entity
+Date: Mon, 10 Aug 2026 05:52:02 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+rndr-id: 54d4f11c-9d7b-446c
+Server: cloudflare
+vary: Accept-Encoding
+x-render-origin-server: uvicorn
+cf-cache-status: DYNAMIC
+CF-RAY: a28cbb6c1d254fbc-SIN
+alt-svc: h3=":443"; ma=86400
+
+{"detail":[{"type":"json_invalid","loc":["body",12],"msg":"JSON decode error","input":{},"ctx":{"error":"Unterminated string starting at"}}]}
+
+# Lệnh 5
+401 401 401 401 401 401 401 401 401 401 401 401 401 401 401
 ```
 
 ## Ảnh Chụp Màn Hình
@@ -83,19 +148,4 @@ Dán output của các lệnh trên vào đây:
 - `screenshots/dashboard.png` — trang quản lý service trên platform
 - `screenshots/health.png` — kết quả gọi `/health` từ trình duyệt hoặc curl
 
----
 
-## Nếu Dùng Phương Án Dự Phòng
-
-Không đăng ký được tài khoản cloud? Vẫn nộp được bài, nhưng CP5 tối đa 60% điểm:
-
-1. Đặt `LOCAL_FALLBACK=true` trong `.env`
-2. Chạy `docker compose up -d` rồi kiểm tra `docker compose ps`
-3. Chụp màn hình vào `screenshots/`
-4. Chạy `pytest tests/test_cp5.py -v` — bộ test sẽ tự chuyển sang kiểm tra
-   `http://localhost:8000`
-5. Ghi rõ lý do không deploy được vào phần dưới đây:
-
-```
-(điền lý do nếu dùng phương án dự phòng, ngược lại xóa mục này)
-```
