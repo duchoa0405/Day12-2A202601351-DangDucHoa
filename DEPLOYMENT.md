@@ -122,23 +122,23 @@ alt-svc: h3=":443"; ma=86400
 {"detail":"invalid or missing API key"}
 
 # Lệnh 4
-HTTP/1.1 422 Unprocessable Entity
-Date: Mon, 10 Aug 2026 05:52:02 GMT
+HTTP/1.1 200 OK
+Date: Mon, 10 Aug 2026 06:04:08 GMT
 Content-Type: application/json
 Transfer-Encoding: chunked
 Connection: keep-alive
-rndr-id: 54d4f11c-9d7b-446c
+rndr-id: 34a3e209-c026-45df
 Server: cloudflare
 vary: Accept-Encoding
 x-render-origin-server: uvicorn
 cf-cache-status: DYNAMIC
-CF-RAY: a28cbb6c1d254fbc-SIN
+CF-RAY: a28ccd26cdf3dd45-HKG
 alt-svc: h3=":443"; ma=86400
 
-{"detail":[{"type":"json_invalid","loc":["body",12],"msg":"JSON decode error","input":{},"ctx":{"error":"Unterminated string starting at"}}]}
+{"answer":"Ngắn gọn: Deploy la gi phụ thuộc vào ba yếu tố — cấu hình qua biến môi trường, health check để orchestrator biết trạng thái, và giới hạn tài nguyên.","user_id":"sv-test","history_length":0,"cost_usd":2.265e-05,"tokens":{"in":3,"out":37}}
 
 # Lệnh 5
-401 401 401 401 401 401 401 401 401 401 401 401 401 401 401
+200 200 200 200 200 200 200 200 200 429 429 429 429 429 429
 ```
 
 ## Ảnh Chụp Màn Hình
