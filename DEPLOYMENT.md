@@ -75,67 +75,67 @@ Dán output của các lệnh trên vào đây:
 ```
 # Lệnh 1
 HTTP/1.1 200 OK
-Date: Mon, 10 Aug 2026 05:51:10 GMT
+Date: Mon, 10 Aug 2026 16:28:14 GMT
 Content-Type: application/json
 Transfer-Encoding: chunked
 Connection: keep-alive
 cf-cache-status: DYNAMIC
-rndr-id: 590823c4-faeb-4a08
+rndr-id: 7d19e405-de2d-43b2
 Server: cloudflare
 vary: Accept-Encoding
 x-render-origin-server: uvicorn
-CF-RAY: a28cba28cdb5ce16-SIN
+CF-RAY: a2905f18af320792-HKG
 alt-svc: h3=":443"; ma=86400
 
 {"status":"ok","service":"day12-agent","version":"1.0.0"}
 
 # Lệnh 2
 HTTP/1.1 200 OK
-Date: Mon, 10 Aug 2026 05:51:28 GMT
+Date: Mon, 10 Aug 2026 16:29:03 GMT
 Content-Type: application/json
 Transfer-Encoding: chunked
 Connection: keep-alive
-rndr-id: 34e8941c-63a9-4951
+cf-cache-status: DYNAMIC
+rndr-id: bd5993f1-870e-41cf
 Server: cloudflare
 vary: Accept-Encoding
 x-render-origin-server: uvicorn
-cf-cache-status: DYNAMIC
-CF-RAY: a28cba99aee02fbd-SIN
+CF-RAY: a290608cbbb703ad-HKG
 alt-svc: h3=":443"; ma=86400
 
 {"status":"ready","redis":true}
 
 # Lệnh 3
 HTTP/1.1 401 Unauthorized
-Date: Mon, 10 Aug 2026 05:51:43 GMT
+Date: Mon, 10 Aug 2026 16:29:29 GMT
 Content-Type: application/json
 Transfer-Encoding: chunked
 Connection: keep-alive
 cf-cache-status: DYNAMIC
-rndr-id: e4178ba0-6ae3-4a3b
+rndr-id: 182f257f-b28e-4b8b
 Server: cloudflare
 vary: Accept-Encoding
 x-render-origin-server: uvicorn
-CF-RAY: a28cbaf67f207231-HKG
+CF-RAY: a2906130cff7983b-HKG
 alt-svc: h3=":443"; ma=86400
 
 {"detail":"invalid or missing API key"}
 
 # Lệnh 4
 HTTP/1.1 200 OK
-Date: Mon, 10 Aug 2026 06:04:08 GMT
+Date: Mon, 10 Aug 2026 16:34:26 GMT
 Content-Type: application/json
 Transfer-Encoding: chunked
 Connection: keep-alive
-rndr-id: 34a3e209-c026-45df
+cf-cache-status: DYNAMIC
+rndr-id: b3b17036-745f-4571
 Server: cloudflare
 vary: Accept-Encoding
 x-render-origin-server: uvicorn
-cf-cache-status: DYNAMIC
-CF-RAY: a28ccd26cdf3dd45-HKG
+CF-RAY: a290686f28ab74bd-HKG
 alt-svc: h3=":443"; ma=86400
 
-{"answer":"Ngắn gọn: Deploy la gi phụ thuộc vào ba yếu tố — cấu hình qua biến môi trường, health check để orchestrator biết trạng thái, và giới hạn tài nguyên.","user_id":"sv-test","history_length":0,"cost_usd":2.265e-05,"tokens":{"in":3,"out":37}}
+{"answer":"Với Deploy_la_gi, cách làm phổ biến trong production là đặt một lớp gateway phía trước để lo authentication, rate limiting và bảo vệ chi phí. (Mình đang nhớ 20 lượt trao đổi trước đó.)","user_id":"sv-test","history_length":20,"cost_usd":9.435e-05,"tokens":{"in":445,"out":46}}
 
 # Lệnh 5
 200 200 200 200 200 200 200 200 200 429 429 429 429 429 429
