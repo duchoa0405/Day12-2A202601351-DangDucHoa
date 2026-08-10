@@ -21,14 +21,46 @@
 #            docker images day12-agent:prod     # xem dung lượng
 # ═══════════════════════════════════════════════════════════════════
 
-FROM python:3.11
+FROM python:3.11-slim AS builder
+
 
 WORKDIR /app
 
+#Copy riêng requirements để tận dụng cache
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# ---Giai doan 2: Runtime (chay that)---
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+#tao user thuong cos ten appuser
+RUN useradd -m appuser
+
+# Copy THU VIEN da cai o stage builder sang
+COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+
+COPY --from=builder /usr/local/bin /usr/local/bin
+
+# Copy SOURCE CODE
 COPY . .
 
-RUN pip install -r requirements.txt
+# chuyeenr quyen so huu thu muc cho appuser
+RUN chown -R appuser:appuser /app
 
-EXPOSE 8000
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+#chuyen sang chay tren user(no run root)
+USER appuser
+
+# Biến môi trường PORT (Cloud thường tự động cấp giá trị cho biến này, mặc định ta để 8000)
+ENV PORT=8000
+EXPOSE ${PORT}
+
+# Khai báo Healthcheck (dùng python gọi vào /health)
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD python -c "import requests; requests.get('http://localhost:${PORT}/health', timeout=3)"     
+
+# Khởi động server
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port $PORT"]
